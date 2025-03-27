@@ -27,7 +27,6 @@ class Counter extends React.Component {
     return React.createElement(
       'div',
       { className: 'counter' },
-      React.createElement('h2', null, 'Counter'),
       React.createElement('p', null, `Value: ${this.state.value}`),
       React.createElement(
         'button',

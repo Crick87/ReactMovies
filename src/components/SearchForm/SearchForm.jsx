@@ -32,7 +32,6 @@ class SearchForm extends React.Component {
     return React.createElement(
       'div',
       null,
-      React.createElement('h2', null, 'Search Form'),
       React.createElement(
         'div',
         { className: 'search-form' },

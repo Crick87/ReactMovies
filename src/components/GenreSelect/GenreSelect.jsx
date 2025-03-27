@@ -23,7 +23,6 @@ class GenreSelect extends React.Component {
 
     return (
       <div className="genre-select-container">
-        <h2>Genre Select</h2>
         <div className="genre-select">
           {genres.map((genre) => (
             <button

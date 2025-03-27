@@ -1,0 +1,15 @@
+:root {
+  --black-color: #232323;
+  --gray-color: #555555;
+  --white-color: #f0f0f0;
+
+  --primary-color-hsl: 356, 90%, 64%;
+  --primary-color: hsl(var(--primary-color-hsl));
+  --primary-color-lighter: hsl(356, 85%, 77%);
+  --primary-color-darker: hsl(356, 54%, 51%);
+
+  --secondary-color-hsl: 0, 0%, 26%;
+  --secondary-color: hsl(var(--secondary-color-hsl));
+  --secondary-color-lighter: hsl(0, 0%, 39%);
+  --secondary-color-darker: hsl(0, 0%, 18%);
+}
