@@ -2,7 +2,7 @@
 .main-header {
     padding: 100px;
     margin: 0;
-    background: url( 'https://s3-alpha-sig.figma.com/img/9ab1/b611/92a81bbe79a924292111ca43f3a39e8f?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CwWSitmCDtXVi3pRL9yYGlQpXJ6udstl9Ev2xpcCyNyXRECkASBVPSNjtOUA8kdAYtFumt2ZvKCcIXz1IBrbEunonB7HJfB4TCpM2j9cLeYzlf8hLKqsDZbfIVzWDyuFG06QPEItIYyc~HjbRjF~yr7lYPEVZ0usgpO0pqsyyTXM9EvQjIevk~KwB7aNT60jRhYHvs7-mAAbW6rsD-WGFNLyMpBhrqVpOLjXZ4vz5d4Bxw64JX~~GiMjgz0KNItWz~drQ3GtfMP0AbWMoCvdtJAr2O3DNRPXdFwPFR7D0B-tr6uXx6zZ3eP-2W1C3vCXp0V7470QI767Sq5nlQW-Bw__') rgba(0, 0, 0, 0.9);
+    background: url( '../assets/main-header.png') rgba(0, 0, 0, 0.9);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

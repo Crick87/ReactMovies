@@ -64,7 +64,7 @@ const MovieTile = ({ movie, onClick, onEdit, onDelete }) => {
           </div>
         )}
       </div>
-      <div className="movie-details">
+      <div className="movie-tile-details">
         <h3 className="movie-title">{movie.title}</h3>
         <p className="movie-year">{movie.year}</p>
         <div className="movie-genres">

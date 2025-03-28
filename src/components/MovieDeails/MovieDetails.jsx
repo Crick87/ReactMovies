@@ -9,7 +9,7 @@ const MovieDetails = ({ movie }) => {
   const { imageUrl, title, year, genres, rating, duration, description } = movie;
 
   return (
-    <div className="movie-details">
+    <div className="movie-details container">
       <div className="row">
         <div className="col-md-4">
           <img src={imageUrl} alt={title} className="img-fluid movie-poster" />

@@ -7,8 +7,10 @@ import FilterBar from './pages/FilterBar.jsx'
 import MovieList from './pages/MovieList.jsx'
 import MovieDetails from './components/MovieDeails/MovieDetails.jsx'
 
+import imageMovie2 from './assets/movie-2.png';
+
 const movie = {
-  imageUrl: 'https://s3-alpha-sig.figma.com/img/89fa/22b0/9af0f226591250d0c0dc45e952d8c0a6?Expires=1743984000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=ptfOU3KSjHL-8X6HDFIJpKQd9MWVzcwjvsRJTglbwJ4zSoL4HD-Bd85DEGjmP7dQhO8IARPZXCWLbFlhF~lOnG0~9DlDsQovfWkI-f0mpLi4I38~xZRerzNt83AW1VnIg1JKYMPPVwWN1nIKHnswZR0fMoAGQHUt3Dbsy~LAm5MfkTDeGjuip5Bb7feZmQMZt3SF~DHJ0r--2i2C8mnLnordajJW594Akp1D4VcCPN8~1tfV19rupWsc2WbS-kGeDZJ82VOH~-vvyMb~akXGFaMgO4ux11d6vZwDloMJJKfeS47IKLy8eOSPL-mDEj3DOJF0O4rgJxfwQbFzf5wdSw__',
+  imageUrl: imageMovie2,
   title: 'Pulp Fiction',
   year: 1994,
   genres: ['Action', 'Adventure'],
@@ -20,10 +22,10 @@ const movie = {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Counter initialValue={5} />
     <MainHeader/>
     <MovieDetails movie={movie} />
     <FilterBar/>
     <MovieList/>
+    <Counter initialValue={5} />
   </StrictMode>,
 )
