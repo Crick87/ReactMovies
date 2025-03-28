@@ -2,27 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import Counter from './components/Counter/Counter.jsx'
-import SearchForm from './components/SearchForm/SearchForm.jsx'
-import GenreSelect from './components/GenreSelect/GenreSelect.jsx'
-
-function handleSearch(query) {
-  console.log('Search query:', query);
-}
-
-const genres = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
-const selectedGenre = 'Comedy';
-function handleGenreSelect(genre) {
-  console.log('Selected genre:', genre);
-}
+import MainHeader from './pages/MainHeader.jsx'
+import FilterBar from './pages/FilterBar.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Counter initialValue={5} />
-    <SearchForm initialSearchQuery="Shrek" onSearch={handleSearch} />
-    <GenreSelect
-      genres={genres}
-      selectedGenre={selectedGenre}
-      onSelect={handleGenreSelect}
-    />
+    <MainHeader/>
+    <FilterBar/>
   </StrictMode>,
 )
