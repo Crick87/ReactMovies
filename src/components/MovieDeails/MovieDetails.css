@@ -1,0 +1,22 @@
+.movie-details {
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #161616;
+}
+
+.movie-poster {
+  max-width: 100%;
+}
+
+.rating {
+  margin-bottom: 10px;
+}
+
+.description {
+  margin-top: 20px;
+  color: #969696;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}

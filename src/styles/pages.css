@@ -1,0 +1,16 @@
+
+.main-header {
+    padding: 100px;
+    margin: 0;
+    background: url( '../assets/main-header.png') rgba(0, 0, 0, 0.9);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-blend-mode: multiply;
+}
+
+.filter-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--secondary-color);
+}

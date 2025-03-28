@@ -1,0 +1,37 @@
+.sort-control {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  color: white;
+}
+
+.sort-label {
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.sort-select {
+  padding: 5px 10px;
+  border: 1px solid var(--black-color);
+  border-radius: 4px;
+  background-color: var(--secondary-color-darker);
+  color: white;
+  font-size: 14px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f65261'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 40px;
+}
+
+.sort-select:focus {
+  border-color: var(--primary-color);
+}
+
+.sort-select:focus > option:checked { 
+  background: var(--primary-color) !important;
+}

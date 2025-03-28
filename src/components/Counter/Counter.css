@@ -1,3 +1,7 @@
+.counter {
+  text-align: center;
+}
+
 .counter button {
   margin: 10px;
 }
