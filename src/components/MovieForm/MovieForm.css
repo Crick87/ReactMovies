@@ -1,0 +1,50 @@
+/* MovieForm.css */
+.movie-form {
+    padding: 10px;
+}
+
+.movie-form .form-group label {
+    display: block;
+    font-weight: 500;
+    font-size: small;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.movie-form .form-control {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 10px;
+    border: 1px solid var(--secondary-color-darker);
+    background-color: var(--secondary-color-darker);
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+}
+
+.movie-form .form-control:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+.movie-form .btn-primary {
+    margin-left: 20px;
+}
+
+.movie-form .btn-secondary {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-color: var(--primary-color);
+}
+
+.movie-form .btn-secondary:hover {
+    border-color: var(--primary-color-darker);
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-content-end {
+    justify-content: end;
+}
