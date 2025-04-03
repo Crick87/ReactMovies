@@ -7,6 +7,10 @@ function handleSearch(query) {
   console.log('Search query:', query);
 }
 
+function handleOnSubmit(movie) {
+  console.log('Submit:', movie);
+}
+
 function MainHeader() {
 
   const [showDialog, setShowDialog] = useState(false);
@@ -22,7 +26,7 @@ function MainHeader() {
               title="Add movie"
               onClose={() => setShowDialog(false)}
             >
-              <MovieForm />
+              <MovieForm onSubmit={handleOnSubmit} />
             </Dialog>
           )}
         </div>

@@ -1,13 +1,13 @@
 import React from 'react';
 import './MovieForm.css';
 
-const MovieForm = ({ initialMovie, genres: propGenres }) => {
+const MovieForm = ({ initialMovie, onSubmit, genres: propGenres }) => {
     const genres = propGenres || ['Documentary', 'Comedy', 'Crime', 'Horror'];
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = Object.fromEntries(new FormData(event.target));
-        console.log(formData);
+        onSubmit(formData);
     };
 
     const handleReset = (event) => {
@@ -20,7 +20,7 @@ const MovieForm = ({ initialMovie, genres: propGenres }) => {
 
     return (
         <div className="movie-form bootstrap-wrapper">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} data-testid="movie-form">
                 <div className="row">
                     <div className="form-group col-7">
                         <label htmlFor="title">Title</label>
