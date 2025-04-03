@@ -7,6 +7,7 @@ import MovieDetails from '../components/MovieDeails/MovieDetails.jsx'
 
 import imageMovie1 from '../assets/movie-1.png';
 import imageMovie2 from '../assets/movie-2.png';
+import Footer from '../components/Footer/Footer.jsx';
 
 function App() {
   const [movies, setMovies] = useState([
@@ -54,6 +55,7 @@ function App() {
       <FilterBar />
       <MovieList movies={movies} setSelectedMovie={setSelectedMovie} />
       <Counter initialValue={5} />
+      <Footer />
     </div>
   );
 }

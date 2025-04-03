@@ -3,7 +3,7 @@ import './MovieDetails.css';
 
 const MovieDetails = ({ movie }) => {
   if (!movie) {
-    return <p>No movie selected</p>;
+    return <div className="container"><p>No movie selected</p></div>;
   }
 
   const { poster_path, title, release_date, genres, vote_average, runtime, overview } = movie;

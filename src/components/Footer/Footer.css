@@ -1,0 +1,13 @@
+.footer-container {
+    padding: 50px;
+    margin-top: 50px;
+    background-color: var(--gray-color);
+}
+
+.footer-container .logo {
+    color: var(--primary-color);
+    font-size: larger;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
