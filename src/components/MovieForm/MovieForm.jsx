@@ -33,50 +33,50 @@ const MovieForm = ({ initialMovie, genres: propGenres }) => {
                         />
                     </div>
                     <div className="form-group col-5">
-                        <label htmlFor="releaseDay">Release Day</label>
+                        <label htmlFor="release_date">Release Day</label>
                         <input
                             type="text"
                             className="form-control"
-                            id="releaseDay"
-                            name="releaseDay"
-                            defaultValue={initialMovie?.releaseDay || ''}
+                            id="release_date"
+                            name="release_date"
+                            defaultValue={initialMovie?.release_date || ''}
                         />
                     </div>
                 </div>
                 <div className="row">
                     <div className="form-group col-7">
-                        <label htmlFor="movieUrl">Movie URL</label>
+                        <label htmlFor="poster_path">Poster URL</label>
                         <input
                             type="url"
                             className="form-control"
-                            id="movieUrl"
-                            name="movieUrl"
-                            defaultValue={initialMovie?.movieUrl || ''}
+                            id="poster_path"
+                            name="poster_path"
+                            defaultValue={initialMovie?.poster_path || ''}
                         />
                     </div>
                     <div className="form-group col-5">
-                        <label htmlFor="rating">Rating</label>
+                        <label htmlFor="vote_average">Rating</label>
                         <input
                             type="number"
                             className="form-control"
-                            id="rating"
-                            name="rating"
+                            id="vote_average"
+                            name="vote_average"
                             min="1"
                             max="10"
-                            defaultValue={initialMovie?.rating || ''}
+                            defaultValue={initialMovie?.vote_average || ''}
                         />
                     </div>
                 </div>
                 <div className="row">
                     <div className="form-group col-7">
-                        <label htmlFor="genre">Genre</label>
+                        <label htmlFor="genres">Genres</label>
                         <select
                             // multiple
                             className="form-control"
-                            id="genre"
-                            name="genre"
-                            // defaultValue={initialMovie?.genre || []}
-                            defaultValue={initialMovie?.genre || undefined}
+                            id="genres"
+                            name="genres"
+                            // defaultValue={initialMovie?.genres || []}
+                            defaultValue={initialMovie?.genres || undefined}
                         >
                             {genres.map((genre) => (
                                 <option key={genre} value={genre}>

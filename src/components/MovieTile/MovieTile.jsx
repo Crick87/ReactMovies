@@ -49,7 +49,7 @@ const MovieTile = ({ movie, onClick, onEdit, onDelete }) => {
   return (
     <div className="movie-tile" onClick={handleClick}>
       <div className="movie-image-container">
-        <img src={movie.imageUrl} alt={movie.title} className="movie-image" />
+        <img src={movie.poster_path} alt={movie.title} className="movie-image" />
         <button className="menu-button" onClick={toggleMenu}>
           ...
         </button>
@@ -66,7 +66,7 @@ const MovieTile = ({ movie, onClick, onEdit, onDelete }) => {
       </div>
       <div className="movie-tile-details">
         <h3 className="movie-title">{movie.title}</h3>
-        <p className="movie-year">{movie.year}</p>
+        <p className="movie-year">{movie.release_date}</p>
         <div className="movie-genres">
           {movie.genres.map((genre) => (
             <span key={genre} className="movie-genre">
