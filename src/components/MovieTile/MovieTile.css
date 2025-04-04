@@ -1,0 +1,95 @@
+.movie-tile {
+  /* width: 33%; */
+  border: 1px solid var(--secondary-color-darker);
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.movie-image-container {
+  position: relative;
+}
+
+.movie-image {
+  width: 100%;
+  height: auto;
+}
+
+.menu-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none !important;
+  border: none !important;
+  margin: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-top: 5px !important;
+  padding-bottom: 20px !important;
+  border-radius: 25px;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.menu-button:hover {
+  background-color: var(--black-color) !important;
+}
+
+.menu-button:focus,
+.menu-button:focus-visible {
+  background-color: var(--black-color) !important;
+  outline: none;
+}
+
+.menu {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background-color: var(--secondary-color-darker);
+  border: 1px solid var(--black-color);
+  padding: 5px;
+  z-index: 10;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.movie-tile-details {
+  margin-top: 10px;
+}
+
+.movie-title {
+  margin: 0;
+}
+
+.movie-year {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.movie-genres {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie-genre {
+  background-color: var(--secondary-color-darker);
+  padding: 3px;
+  margin: 2px;
+  font-size: 10px;
+}

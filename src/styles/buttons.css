@@ -1,0 +1,40 @@
+/* Primary */
+
+button {
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    transition: background-color 0.25s;
+    text-transform: uppercase;
+}
+
+button:hover {
+    border-color: var(--primary-color-darker);
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto var(--primary-color-darker);
+    background-color: var(--primary-color-darker);
+}
+
+/* Secondary */
+
+button.secondary {
+    background-color: var(--secondary-color-darker);
+}
+
+button.secondary:hover {
+    background-color: var(--secondary-color);
+}
+
+button.secondary:focus,
+button.secondary:focus-visible {
+    outline: 4px auto var(--primary-color);
+}

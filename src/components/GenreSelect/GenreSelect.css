@@ -1,7 +1,3 @@
-.genre-select-container h2 {
-  margin-top: 2rem;
-}
-
 .genre-select {
   display: flex;
 }
@@ -11,7 +7,7 @@
   background-color: transparent;
   border: none;
   border-radius: 0;
-  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  border-bottom: 2px solid transparent;
   text-transform: uppercase;
 }
 
@@ -19,9 +15,11 @@
 .genre-button:focus,
 .genre-button:active {
   outline: none;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  background-color: transparent;
+  border-bottom: 2px solid var(--primary-color-darker);
 }
 
 .genre-button.selected {
-  border-bottom: 2px solid #f65261;
+  background-color: transparent;
+  border-bottom: 2px solid var(--primary-color);
 }
