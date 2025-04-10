@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import Counter from '../components/Counter/Counter.jsx'
-import MainHeader from './MainHeader.jsx'
-import FilterBar from './FilterBar.jsx'
-import MovieList from './MovieList.jsx'
+import MainHeader from '../layout/MainHeader.jsx'
+import FilterBar from '../layout/FilterBar.jsx'
+import MovieList from '../layout/MovieList.jsx'
 import MovieDetails from '../components/MovieDeails/MovieDetails.jsx'
 
 import imageMovie1 from '../assets/movie-1.png';
 import imageMovie2 from '../assets/movie-2.png';
-import Footer from '../components/Footer/Footer.jsx';
 
-function App() {
+function MovieListPage() {
   const [movies, setMovies] = useState([
     {
       id: '1',
@@ -49,15 +47,13 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   return (
-    <div>
+    <>
       <MainHeader />
       <MovieDetails movie={selectedMovie} />
       <FilterBar />
       <MovieList movies={movies} setSelectedMovie={setSelectedMovie} />
-      <Counter initialValue={5} />
-      <Footer />
-    </div>
+    </>
   );
 }
 
-export default App;
+export default MovieListPage;
