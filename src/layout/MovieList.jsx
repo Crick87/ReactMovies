@@ -1,19 +1,7 @@
 import React from 'react';
 import MovieTile from '../components/MovieTile/MovieTile';
 
-// const handleMovieClick = (movie) => {
-//     console.log('Movie clicked:', movie.title);
-// };
-
-const handleEditMovie = (movie) => {
-    console.log('Edit movie:', movie.title);
-};
-
-const handleDeleteMovie = (movie) => {
-    console.log('Delete movie:', movie.title);
-};
-
-function MovieList({ movies, setSelectedMovie }) {
+function MovieList({ movies, setSelectedMovie, handleEditMovie, handleDeleteMovie }) {
     return (
         <div className='movie-list container'>
             <div className="row justify-content-center">

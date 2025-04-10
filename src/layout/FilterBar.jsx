@@ -1,20 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GenreSelect from '../components/GenreSelect/GenreSelect';
 import SortControl from '../components/SortControl/SortControl';
 
-function FilterBar() {
-
-  const genres = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
-  const selectedGenre = 'Comedy';
-  function handleGenreSelect(genre) {
-    console.log('Selected genre:', genre);
-  }
-
-  const [selectedSort, setSelectedSort] = useState('Release Date');
-  const handleSortChange = (newSort) => {
-    setSelectedSort(newSort);
-    console.log('Sort by:', newSort);
-  };
+function FilterBar({sortCriteria, setSortCriteria, selectedGenre, setActiveGenre, genres}) {
 
   return (
     <section className='filter-bar container'>
@@ -23,11 +11,11 @@ function FilterBar() {
           <GenreSelect
             genres={genres}
             selectedGenre={selectedGenre}
-            onSelect={handleGenreSelect}
+            onSelect={setActiveGenre}
           />
         </div>
         <div className="col-auto">
-          <SortControl selectedOption={selectedSort} onSortChange={handleSortChange} />
+          <SortControl selectedOption={sortCriteria} onSortChange={setSortCriteria} />
         </div>
       </div>
     </section>

@@ -3,15 +3,11 @@ import SearchForm from '../components/SearchForm/SearchForm';
 import Dialog from '../components/Dialog/Dialog';
 import MovieForm from '../components/MovieForm/MovieForm';
 
-function handleSearch(query) {
-  console.log('Search query:', query);
-}
-
 function handleOnSubmit(movie) {
   console.log('Submit:', movie);
 }
 
-function MainHeader() {
+function MainHeader({searchQuery, setSearchQuery}) {
 
   const [showDialog, setShowDialog] = useState(false);
 
@@ -32,7 +28,7 @@ function MainHeader() {
         </div>
       </div>
       <h2>FIND YOUR MOVIE</h2>
-      <SearchForm initialSearchQuery="Shrek" onSearch={handleSearch} />
+      <SearchForm searchQuery={searchQuery} onSearch={setSearchQuery} />
     </section>
   );
 }

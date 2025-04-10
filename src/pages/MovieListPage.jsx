@@ -7,7 +7,19 @@ import MovieDetails from '../components/MovieDeails/MovieDetails.jsx'
 import imageMovie1 from '../assets/movie-1.png';
 import imageMovie2 from '../assets/movie-2.png';
 
+const handleEditMovie = (movie) => {
+  console.log('Edit movie:', movie.title);
+};
+
+const handleDeleteMovie = (movie) => {
+  console.log('Delete movie:', movie.title);
+};
+
 function MovieListPage() {
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortCriteria, setSortCriteria] = useState('Release Date');
+  const [activeGenre, setActiveGenre] = useState('Comedy');
   const [movies, setMovies] = useState([
     {
       id: '1',
@@ -45,13 +57,31 @@ function MovieListPage() {
     },
   ]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [genreList] = useState(['All', 'Documentary', 'Comedy', 'Horror', 'Crime']);
+
+  const handleCloseDetails = () => {
+    setSelectedMovie(null);
+  }
 
   return (
     <>
-      <MainHeader />
-      <MovieDetails movie={selectedMovie} />
-      <FilterBar />
-      <MovieList movies={movies} setSelectedMovie={setSelectedMovie} />
+      <MainHeader
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery} />
+      <MovieDetails
+        movie={selectedMovie}
+        onCloseDetails={handleCloseDetails} />
+      <FilterBar
+        sortCriteria={sortCriteria}
+        setSortCriteria={setSortCriteria}
+        selectedGenre={activeGenre}
+        setActiveGenre={setActiveGenre}
+        genres={genreList} />
+      <MovieList
+        movies={movies}
+        setSelectedMovie={setSelectedMovie}
+        handleEditMovie={handleEditMovie}
+        handleDeleteMovie={handleDeleteMovie} />
     </>
   );
 }
