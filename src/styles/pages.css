@@ -24,3 +24,14 @@
     margin-bottom: 20px;
     border-bottom: 2px solid var(--secondary-color);
 }
+
+/* Movies page */
+.movies-messages-container {
+    text-align: center;
+}
+.movies-messages-container p {
+    margin: 50px;
+}
+.movies-error-message {
+    color: red;
+}
