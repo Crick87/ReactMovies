@@ -13,22 +13,24 @@ function MainHeader({searchQuery, setSearchQuery}) {
 
   return (
     <section className='main-header'>
-      <div className='topbar'>
-        <span className='logo'><strong>netflix</strong>roulette</span>
-        <div>
-          <button onClick={() => setShowDialog(true)}>+ ADD MOVIE</button>
-          {showDialog && (
-            <Dialog
-              title="Add movie"
-              onClose={() => setShowDialog(false)}
-            >
-              <MovieForm onSubmit={handleOnSubmit} />
-            </Dialog>
-          )}
+      <div className='container'>
+        <div className='topbar'>
+          <span className='logo'><strong>netflix</strong>roulette</span>
+          <div>
+            <button onClick={() => setShowDialog(true)}>+ ADD MOVIE</button>
+            {showDialog && (
+              <Dialog
+                title="Add movie"
+                onClose={() => setShowDialog(false)}
+              >
+                <MovieForm onSubmit={handleOnSubmit} />
+              </Dialog>
+            )}
+          </div>
         </div>
+        <h2>FIND YOUR MOVIE</h2>
+        <SearchForm searchQuery={searchQuery} onSearch={setSearchQuery} />
       </div>
-      <h2>FIND YOUR MOVIE</h2>
-      <SearchForm searchQuery={searchQuery} onSearch={setSearchQuery} />
     </section>
   );
 }
