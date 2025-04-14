@@ -4,9 +4,9 @@ import MovieTile from './MovieTile';
 
 describe('MovieTile', () => {
   const movie = {
-    imageUrl: 'url_de_la_imagen',
+    poster_path: 'url_de_la_imagen',
     title: 'Bohemian Rhapsody',
-    year: 2003,
+    release_date: 2003,
     genres: ['Drama', 'Biography', 'Music'],
   };
 

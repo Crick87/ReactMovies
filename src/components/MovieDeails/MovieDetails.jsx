@@ -3,26 +3,26 @@ import './MovieDetails.css';
 
 const MovieDetails = ({ movie }) => {
   if (!movie) {
-    return <p>No movie selected</p>;
+    return <div className="container"><p>No movie selected</p></div>;
   }
 
-  const { imageUrl, title, year, genres, rating, duration, description } = movie;
+  const { poster_path, title, release_date, genres, vote_average, runtime, overview } = movie;
 
   return (
     <div className="movie-details container">
       <div className="row">
         <div className="col-md-4">
-          <img src={imageUrl} alt={title} className="img-fluid movie-poster" />
+          <img src={poster_path} alt={title} className="img-fluid movie-poster" />
         </div>
         <div className="col-md-8">
           <h2>{title}</h2>
           <p className='primary-color'>
-            {year} | {genres.join(', ')} | {duration}
+            {release_date} | {genres.join(', ')} | {runtime}
           </p>
           <div className="rating">
-            <strong>Rating:</strong> {rating}
+            <strong>Rating:</strong> {vote_average}
           </div>
-          <p className="description">{description}</p>
+          <p className="description">{overview}</p>
         </div>
       </div>
     </div>
