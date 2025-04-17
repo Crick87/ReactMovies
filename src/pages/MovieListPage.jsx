@@ -1,11 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import MainHeader from '../layout/MainHeader.jsx'
-import FilterBar from '../layout/FilterBar.jsx'
-import MovieList from '../layout/MovieList.jsx'
-import MovieDetails from '../components/MovieDeails/MovieDetails.jsx'
+import { useSearchParams } from 'react-router-dom';
+
+import MainHeader from '../layout/MainHeader.jsx';
+import FilterBar from '../layout/FilterBar.jsx';
+import MovieList from '../layout/MovieList.jsx';
+import MovieDetails from '../components/MovieDeails/MovieDetails.jsx';
 
 import { fetchMovies } from '../services/movieService';
+
+const DEFAULT_SORT_CRITERIA = 'title';
+const DEFAULT_ACTIVE_GENRE = 'All';
+const DEFAULT_SEARCH_QUERY = '';
 
 const handleEditMovie = (movie) => {
   console.log('Edit movie:', movie.title);
@@ -16,10 +22,18 @@ const handleDeleteMovie = (movie) => {
 };
 
 function MovieListPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortCriteria, setSortCriteria] = useState('release_date');
-  const [activeGenre, setActiveGenre] = useState('All');
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get('query') || DEFAULT_SEARCH_QUERY
+  );
+  const [sortCriteria, setSortCriteria] = useState(
+    searchParams.get('sortBy') || DEFAULT_SORT_CRITERIA
+  );
+  const [activeGenre, setActiveGenre] = useState(
+    searchParams.get('genre') || DEFAULT_ACTIVE_GENRE
+  );
+
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [genreList] = useState(['All', 'Documentary', 'Comedy', 'Horror', 'Crime']);
@@ -27,6 +41,22 @@ function MovieListPage() {
   const [error, setError] = useState(null);
 
   const abortControllerRef = useRef(null);
+
+  useEffect(() => {
+    const params = {};
+    if (searchQuery !== DEFAULT_SEARCH_QUERY) {
+      params.query = searchQuery;
+    }
+    if (sortCriteria !== DEFAULT_SORT_CRITERIA) {
+      params.sortBy = sortCriteria;
+    }
+    if (activeGenre !== DEFAULT_ACTIVE_GENRE) {
+      params.genre = activeGenre;
+    }
+
+    setSearchParams(params, { replace: true });
+
+  }, [searchQuery, sortCriteria, activeGenre, setSearchParams]);
 
   useEffect(() => {
     if (abortControllerRef.current) {
@@ -45,9 +75,11 @@ function MovieListPage() {
           activeGenre,
           signal,
         });
-        setMovies(fetchedMovies);
+        if (!signal.aborted) {
+          setMovies(fetchedMovies);
+        }
       } catch (err) {
-        if (err.name !== 'CanceledError' && !axios.isCancel(err)) {
+        if (err.name !== 'CanceledError' && !axios.isCancel(err) && !signal.aborted) {
             console.error("Failed to fetch movies:", err);
             setError('Error al cargar las películas. Intenta de nuevo.');
         }
@@ -76,9 +108,11 @@ function MovieListPage() {
       <MainHeader
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery} />
-      <MovieDetails
-        movie={selectedMovie}
-        onCloseDetails={handleCloseDetails} />
+      {selectedMovie && (
+        <MovieDetails
+          movie={selectedMovie}
+          onCloseDetails={handleCloseDetails} />
+      )}
       <FilterBar
         sortCriteria={sortCriteria}
         setSortCriteria={setSortCriteria}
