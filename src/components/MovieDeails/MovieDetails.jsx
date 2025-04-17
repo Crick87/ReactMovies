@@ -1,9 +1,27 @@
 import React from 'react';
+import { useOutletContext } from 'react-router-dom';
 import './MovieDetails.css';
 
 import fallbackPosterImage from '../../assets/movie-poster.jpg';
 
-const MovieDetails = ({ movie, onCloseDetails }) => {
+const MovieDetails = () => {
+  const { movie, onCloseDetails, isLoadingDetails, errorDetails } = useOutletContext();
+
+  if (isLoadingDetails) {
+    return <div className="movie-details text-container"><p>Loading details...</p></div>;
+  }
+
+  if (errorDetails) {
+    return (
+      <div className="movie-details text-container">
+        <p className="movies-error-message">{errorDetails}</p>
+        <button className='btn secondary btn-close' onClick={onCloseDetails}>
+          Back
+        </button>
+      </div>
+    );
+  }
+
   if (!movie) {
     return <div className="container"><p>No movie selected</p></div>;
   }
@@ -20,7 +38,7 @@ const MovieDetails = ({ movie, onCloseDetails }) => {
       <div className="d-flex justify-content-end">
         { onCloseDetails && (
           <button type="button" className="btn secondary btn-close" onClick={onCloseDetails}>
-              Close
+            Back
           </button>
         )}
       </div>

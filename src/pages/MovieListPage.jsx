@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Outlet, useSearchParams, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
 
-import MainHeader from '../layout/MainHeader.jsx';
+import { fetchMovies, fetchMovieById } from '../services/movieService';
+
 import FilterBar from '../layout/FilterBar.jsx';
 import MovieList from '../layout/MovieList.jsx';
-import MovieDetails from '../components/MovieDeails/MovieDetails.jsx';
 
-import { fetchMovies } from '../services/movieService';
 
 const DEFAULT_SORT_CRITERIA = 'title';
 const DEFAULT_ACTIVE_GENRE = 'All';
@@ -23,6 +22,8 @@ const handleDeleteMovie = (movie) => {
 
 function MovieListPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { movieId } = useParams();
+  const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get('query') || DEFAULT_SEARCH_QUERY
@@ -35,12 +36,15 @@ function MovieListPage() {
   );
 
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedMovieData, setSelectedMovieData] = useState(null);
   const [genreList] = useState(['All', 'Documentary', 'Comedy', 'Horror', 'Crime']);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isLoadingDetails, setIsLoadingDetails] = useState(false);
+  const [errorDetails, setErrorDetails] = useState(null);
 
   const abortControllerRef = useRef(null);
+  const detailsAbortControllerRef = useRef(null);
 
   useEffect(() => {
     const params = {};
@@ -99,20 +103,72 @@ function MovieListPage() {
     };
   }, [searchQuery, sortCriteria, activeGenre]);
 
+  useEffect(() => {
+    if (movieId) {
+      if (detailsAbortControllerRef.current) {
+        detailsAbortControllerRef.current.abort();
+      }
+      detailsAbortControllerRef.current = new AbortController();
+      const signal = detailsAbortControllerRef.current.signal;
+
+      const getMovieDetails = async () => {
+        setIsLoadingDetails(true);
+        setErrorDetails(null);
+        setSelectedMovieData(null);
+        try {
+          const fetchedMovie = await fetchMovieById(movieId, signal);
+          if (!signal.aborted) {
+            setSelectedMovieData(fetchedMovie);
+          }
+        } catch (err) {
+          if (err.name !== 'CanceledError' && !axios.isCancel(err) && !signal.aborted) {
+            console.error(`Failed to fetch movie ${movieId}:`, err);
+            setErrorDetails('Error al cargar los detalles de la película.');
+          }
+        } finally {
+          if (!signal.aborted) {
+            setIsLoadingDetails(false);
+
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth", });
+          }
+        }
+      };
+      getMovieDetails();
+
+      return () => {
+        if (detailsAbortControllerRef.current) {
+            detailsAbortControllerRef.current.abort();
+        }
+      }
+    } else {
+      setSelectedMovieData(null);
+      setErrorDetails(null);
+    }
+  }, [movieId]);
+
   const handleCloseDetails = () => {
-    setSelectedMovie(null);
+    navigate('/');
   }
+
+  const handleSelectMovie = (movie) => {
+    if (movie && movie.id) {
+      navigate(`/${movie.id}`);
+    }
+  };
+
+  const outletContext = {
+    searchQuery,
+    setSearchQuery,
+
+    movie: selectedMovieData,
+    onCloseDetails: handleCloseDetails,
+    isLoadingDetails,
+    errorDetails,
+  };
 
   return (
     <>
-      <MainHeader
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery} />
-      {selectedMovie && (
-        <MovieDetails
-          movie={selectedMovie}
-          onCloseDetails={handleCloseDetails} />
-      )}
+      <Outlet context={outletContext} />
       <FilterBar
         sortCriteria={sortCriteria}
         setSortCriteria={setSortCriteria}
@@ -127,7 +183,7 @@ function MovieListPage() {
       {!isLoading && !error && (
         <MovieList
           movies={movies}
-          setSelectedMovie={setSelectedMovie}
+          setSelectedMovie={handleSelectMovie}
           handleEditMovie={handleEditMovie}
           handleDeleteMovie={handleDeleteMovie} />
       )}

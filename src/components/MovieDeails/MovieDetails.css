@@ -4,6 +4,10 @@
   background-color: #161616;
 }
 
+.movie-details.text-container {
+  text-align: center;
+}
+
 .movie-poster {
   max-width: 100%;
 }
