@@ -10,8 +10,8 @@ function SortControl({ selectedOption, onSortChange }) {
     <div className="sort-control">
       <span className="sort-label">Sort by</span>
       <select className="sort-select" value={selectedOption} onChange={handleChange}>
-        <option value="Release Date">Release Date</option>
-        <option value="Title">Title</option>
+        <option value="release_date">Release Date</option>
+        <option value="title">Title</option>
       </select>
     </div>
   );

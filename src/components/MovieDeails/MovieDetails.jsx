@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieDetails.css';
 
-const MovieDetails = ({ movie }) => {
+const MovieDetails = ({ movie, onCloseDetails }) => {
   if (!movie) {
     return <div className="container"><p>No movie selected</p></div>;
   }
@@ -10,6 +10,13 @@ const MovieDetails = ({ movie }) => {
 
   return (
     <div className="movie-details container">
+      <div className="d-flex justify-content-end">
+        { onCloseDetails && (
+          <button type="button" className="btn secondary btn-close" onClick={onCloseDetails}>
+              Close
+          </button>
+        )}
+      </div>
       <div className="row">
         <div className="col-md-4">
           <img src={poster_path} alt={title} className="img-fluid movie-poster" />
