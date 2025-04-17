@@ -1,11 +1,12 @@
 import React from 'react';
-import MovieListPage from './pages/MovieListPage.jsx';
+import { Outlet } from 'react-router-dom';
+
 import Footer from './components/Footer/Footer.jsx';
 
 function App() {
   return (
     <>
-      <MovieListPage />
+      <Outlet />
       <Footer />
     </>
   );

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useOutletContext } from 'react-router-dom';
+
 import SearchForm from '../components/SearchForm/SearchForm';
 import Dialog from '../components/Dialog/Dialog';
 import MovieForm from '../components/MovieForm/MovieForm';
@@ -7,8 +9,9 @@ function handleOnSubmit(movie) {
   console.log('Submit:', movie);
 }
 
-function MainHeader({searchQuery, setSearchQuery}) {
+function MainHeader() {
 
+  const { searchQuery, setSearchQuery } = useOutletContext();
   const [showDialog, setShowDialog] = useState(false);
 
   return (

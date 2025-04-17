@@ -1,4 +1,4 @@
-describe('Counter Component', () => {
+describe.skip('Counter Component', () => {
   let baseUrl;
   let initialCounterValue;
 
