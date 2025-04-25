@@ -17,10 +17,12 @@
   "dependencies": {
     "axios": "^1.8.4",
     "focus-trap-react": "^11.0.3",
+    "formik": "^2.4.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-portal": "^4.3.0",
-    "react-router-dom": "^7.5.0"
+    "react-router-dom": "^7.5.0",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",

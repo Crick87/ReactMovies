@@ -25,6 +25,14 @@ const router = createBrowserRouter([
             element: <MainHeader />,
           },
           {
+            path: "new",
+            element: <MainHeader />,
+          },
+          {
+            path: ":movieId/edit",
+            element: <MainHeader />,
+          },
+          {
             path: ":movieId",
             element: <MovieDetails />,
           },
