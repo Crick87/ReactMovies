@@ -58,6 +58,7 @@ const MovieForm = ({ initialMovie, onSubmit, genres: propGenres }) => {
                         <label htmlFor="vote_average">Rating</label>
                         <input
                             type="number"
+                            step="0.1"
                             className="form-control"
                             id="vote_average"
                             name="vote_average"
@@ -76,7 +77,7 @@ const MovieForm = ({ initialMovie, onSubmit, genres: propGenres }) => {
                             id="genres"
                             name="genres"
                             // defaultValue={initialMovie?.genres || []}
-                            defaultValue={initialMovie?.genres || undefined}
+                            defaultValue={initialMovie?.genres[0] || undefined}
                         >
                             {genres.map((genre) => (
                                 <option key={genre} value={genre}>
