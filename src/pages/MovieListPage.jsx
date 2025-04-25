@@ -36,6 +36,7 @@ function MovieListPage() {
   const [error, setError] = useState(null);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [errorDetails, setErrorDetails] = useState(null);
+  const [refreshMovies, setRefreshMovies] = useState(false);
 
   const abortControllerRef = useRef(null);
   const detailsAbortControllerRef = useRef(null);
@@ -95,7 +96,7 @@ function MovieListPage() {
         abortControllerRef.current.abort();
       }
     };
-  }, [searchQuery, sortCriteria, activeGenre]);
+  }, [searchQuery, sortCriteria, activeGenre, refreshMovies]);
 
   useEffect(() => {
     if (movieId) {
@@ -156,6 +157,11 @@ function MovieListPage() {
     navigate(`/${movie.id}/edit`);
   };
 
+  const handleMovieUpdated = (movie) => {
+    setSelectedMovieData(movie);
+    setRefreshMovies(!refreshMovies);
+  };
+
   const handleDeleteMovie = (movie) => {
     console.log('Delete movie:', movie.title);
   };
@@ -172,7 +178,7 @@ function MovieListPage() {
 
   return (
     <>
-      <EditMovie movie={selectedMovieData} />
+      <EditMovie movie={selectedMovieData} onUpdate={handleMovieUpdated} />
       <Outlet context={outletContext} />
       <FilterBar
         sortCriteria={sortCriteria}

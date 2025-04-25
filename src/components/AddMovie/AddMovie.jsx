@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+import { addMovie } from '../../services/movieService';
+
 import Dialog from '../Dialog/Dialog';
 import MovieForm from '../MovieForm/MovieForm';
-
-function handleOnSubmit(movie) {
-    console.log('Submit:', movie);
-}
 
 function AddMovie() {
 
@@ -16,6 +14,17 @@ function AddMovie() {
 
     const handleAddMovie = () => {
         navigate(`/new`);
+    };
+
+    const handleOnSubmit = async (movie) => {
+        try {
+            const newlyAddedMovie = await addMovie(movie);
+            if (newlyAddedMovie && newlyAddedMovie.id) {
+                navigate(`/${newlyAddedMovie.id}`);
+            }
+        } catch (error) {
+            console.error('Error adding movie:', error);
+        }
     };
 
     useEffect(() => {
