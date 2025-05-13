@@ -1,29 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Outlet, useSearchParams, useParams, useNavigate } from 'react-router-dom';
+import { Outlet, useSearchParams, useParams, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import { fetchMovies, fetchMovieById } from '../services/movieService';
 
 import FilterBar from '../layout/FilterBar.jsx';
 import MovieList from '../layout/MovieList.jsx';
+import EditMovie from '../components/EditMovie/EditMovie.jsx';
 
 
 const DEFAULT_SORT_CRITERIA = 'title';
 const DEFAULT_ACTIVE_GENRE = 'All';
 const DEFAULT_SEARCH_QUERY = '';
 
-const handleEditMovie = (movie) => {
-  console.log('Edit movie:', movie.title);
-};
-
-const handleDeleteMovie = (movie) => {
-  console.log('Delete movie:', movie.title);
-};
-
 function MovieListPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { movieId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get('query') || DEFAULT_SEARCH_QUERY
@@ -42,6 +36,7 @@ function MovieListPage() {
   const [error, setError] = useState(null);
   const [isLoadingDetails, setIsLoadingDetails] = useState(false);
   const [errorDetails, setErrorDetails] = useState(null);
+  const [refreshMovies, setRefreshMovies] = useState(false);
 
   const abortControllerRef = useRef(null);
   const detailsAbortControllerRef = useRef(null);
@@ -101,7 +96,7 @@ function MovieListPage() {
         abortControllerRef.current.abort();
       }
     };
-  }, [searchQuery, sortCriteria, activeGenre]);
+  }, [searchQuery, sortCriteria, activeGenre, refreshMovies]);
 
   useEffect(() => {
     if (movieId) {
@@ -129,7 +124,9 @@ function MovieListPage() {
           if (!signal.aborted) {
             setIsLoadingDetails(false);
 
-            window.scrollTo({ top: 0, left: 0, behavior: "smooth", });
+            if (!location.pathname.includes('edit')) {
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth", });
+            }
           }
         }
       };
@@ -156,6 +153,19 @@ function MovieListPage() {
     }
   };
 
+  const handleEditMovie = (movie) => {
+    navigate(`/${movie.id}/edit`);
+  };
+
+  const handleMovieUpdated = (movie) => {
+    setSelectedMovieData(movie);
+    setRefreshMovies(!refreshMovies);
+  };
+
+  const handleDeleteMovie = (movie) => {
+    console.log('Delete movie:', movie.title);
+  };
+
   const outletContext = {
     searchQuery,
     setSearchQuery,
@@ -168,6 +178,7 @@ function MovieListPage() {
 
   return (
     <>
+      <EditMovie movie={selectedMovieData} onUpdate={handleMovieUpdated} />
       <Outlet context={outletContext} />
       <FilterBar
         sortCriteria={sortCriteria}
